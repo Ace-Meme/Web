@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 10, 2024 lúc 01:26 PM
+-- Thời gian đã tạo: Th4 21, 2024 lúc 02:29 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -63,6 +63,17 @@ GROUP BY
     members.student_id$$
 
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `borrow`
+--
+
+CREATE TABLE `borrow` (
+  `student_id` int(11) NOT NULL,
+  `document_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -130,6 +141,13 @@ INSERT INTO `members` (`student_id`, `student_name`, `email`, `password`, `avata
 --
 
 --
+-- Chỉ mục cho bảng `borrow`
+--
+ALTER TABLE `borrow`
+  ADD KEY `student_id` (`student_id`),
+  ADD KEY `document_id` (`document_id`);
+
+--
 -- Chỉ mục cho bảng `documents`
 --
 ALTER TABLE `documents`
@@ -151,6 +169,23 @@ ALTER TABLE `members`
 --
 ALTER TABLE `documents`
   MODIFY `document_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT cho bảng `members`
+--
+ALTER TABLE `members`
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2000008;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `borrow`
+--
+ALTER TABLE `borrow`
+  ADD CONSTRAINT `borrow_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `members` (`student_id`),
+  ADD CONSTRAINT `borrow_ibfk_2` FOREIGN KEY (`document_id`) REFERENCES `documents` (`document_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
