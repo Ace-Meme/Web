@@ -62,7 +62,7 @@ session_start()
                   <tr>
                     <th scope='col'>Mã số</th>
                     <th scope='col'>Tên</th>
-                    <th scope='col'>Ngày đăng ký</th>
+                    <th scope='col'>Ngày gia nhập</th>
                     <th scope='col'>Sách đang mượn</th>
                   </tr>
                 </thead>
