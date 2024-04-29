@@ -34,7 +34,7 @@ $pass = $_POST['password'];
       }
       
       if($count == 0){
-        echo "Chiuj";
+        echo "Người dùng không tồn tại";
       }
       mysqli_close($link);
 ?>
