@@ -1,6 +1,60 @@
 <?php
-session_start();
-session_unset();
+$link = mysqli_connect('localhost', 'root');
+if (!$link) {
+    die('Not connected : ' . mysqli_error($link));
+}
+// make foo the current db
+$db_selected = mysqli_select_db($link,'library');
+if (!$db_selected) {
+    die ('Can\'t use foo : ' . mysqli_error($link));
+}
+if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_POST["submit"] == "Đăng kí") {
+        $acc = isset($_POST['email']) ? $_POST['email']:null;
+        $pass = $_POST["password"];
+        $conf = $_POST["confirm"];
+        $name = isset($_POST['name']) ? $_POST['name']:null;
+        if (!$acc && $acc != 0) {
+            echo '<script>alert("Email không được để trống")</script>';
+        }
+        else if (!preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $acc)) {
+            echo '<script>alert("Email phải có dạng sth@sth.sth")</script>';
+        }
+        else if (!$name && $name != 0){
+            echo '<script>alert("Tên không được để trống")</script>';
+        }
+        else if (strlen($pass) < 2 || strlen($pass) > 30) {
+            echo '<script>alert("Mật khẩu có độ dài từ 2-30 ký tự")</script>';
+        } 
+        else if ($pass != $conf) {
+            echo '<script>alert("Mật khẩu xác nhận không trùng khớp")</script>';
+        }
+        else {
+            $query = "SELECT * FROM members";
+            $result = mysqli_query($link, $query);
+            $test = 0;
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    if ($acc == $row["email"]){
+                        echo '<script>alert("Email đã tồn tại")</script>';
+                        $test = 1;
+                    }
+                }
+            }
+            if ($test == 0){
+                $currentDate = date("Y-m-d");
+                $query = "INSERT INTO members (student_name, email, password, join_date, permission) VALUES ('$name', '$acc', '$pass', '$currentDate', '1')";
+                $result = mysqli_query($link, $query);
+                if ($result) {
+                    header("Location: signup_success.php");
+                    exit;
+                }
+            }
+            mysqli_close($link);
+        }
+    }
+    
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +92,7 @@ session_unset();
 <body>
     <div class="container signin-container">
     <h2 class="text-center mb-4">Đăng ký</h2>
-        <form name="hoho" action="action.php" method="POST">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
                 <div class="mb-3">
                     <label for="inputEmail" class="form-label">Email</label>
                     <input class="form-control" type="text" name="email" placeholder="Email">
@@ -55,7 +109,12 @@ session_unset();
                     <label for="inputName" class="form-label">Tên</label>
                     <input class="form-control" type="text" name="name" placeholder="Tên">
                 </div>
-                <input type="submit" class="btn btn-primary">
+                <input type="submit" class="form-control btn btn-primary" name="submit" value="Đăng kí">
+        </form>
+        <form action='signin.php'>
+            <div class="text-center mt-3">
+            <p>Bạn đã có tài khoản? <a href="signin.php">Đăng nhập</a></p> 
+            </div>
         </form>
     </div>
 

@@ -19,7 +19,7 @@ if (!$result) {
     die($message);
 }
 if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
-    if ($_POST["submit"] == "Signin") {
+    if ($_POST["submit"] == "Đăng nhập") {
         $acc = isset($_POST['email']) ? $_POST['email']:null;
         $pass = $_POST["password"];
         if (!$acc && $acc != 0) {
@@ -99,7 +99,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="inputPassword" class="form-label">Mật khẩu</label>
                     <input class="form-control" type="password" name="password" placeholder="Mật khẩu 2-30 kí tự">
                 </div>
-                <input type="submit" class="form-control btn btn-primary" name="submit" value="Signin">
+                <input type="submit" class="form-control btn btn-primary" name="submit" value="Đăng nhập">
         </form>
         <form action='signup.php'>
             <div class="text-center mt-3">
