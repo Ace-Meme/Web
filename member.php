@@ -5,10 +5,24 @@ session_start()
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>MyLib</title>
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous'>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Library</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; 
+    }
+    .content {
+      flex: 1; 
+    }
+    footer {
+        margin-top: auto;
+    }
+  </style>
 </head>
 <body>
     <nav class='z-3 navbar navbar-expand-lg border-bottom position-sticky top-0 shadow p-3 mb-5 bg-body-tertiary rounded'>
@@ -113,3 +127,20 @@ session_start()
         }
         mysqli_close($link);
         ?>
+      </div>
+  <footer class='bg-light text-center py-3 mt-auto border border-4 rounded-3'>
+    <div class='container'>
+      <p class='m-0'>© 2024</p>
+      <p class='m-0'>Liên hệ: contact@example.com</p>
+      <div class='mt-3'>
+        <a href='https://www.facebook.com/yourcompany' target='_blank' class='me-3 text-primary'> 
+            <i class='fab fa-facebook fa-2x'></i>
+        </a>
+        <a href='https://www.instagram.com/yourcompany' target='_blank' class='text-danger'>
+            <i class='fab fa-instagram fa-2x'></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

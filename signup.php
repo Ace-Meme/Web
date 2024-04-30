@@ -91,6 +91,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="container signin-container">
+    <h2 class="text-center mb-4"><a href="index.php" style="text-decoration: none; color: black;">My Library</a></h2>
     <h2 class="text-center mb-4">Đăng ký</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
                 <div class="mb-3">
