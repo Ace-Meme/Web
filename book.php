@@ -7,7 +7,7 @@ session_start()
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Library</title>
+    <title>MyLib</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
@@ -81,9 +81,9 @@ session_start()
         if ($_POST["submit"] == "Tìm kiếm") {
             $name = isset($_POST['doc']) ? $_POST['doc']:null;
             if ($name){
-                $query = "SELECT document_id, doc_name, quantity, author FROM documents WHERE doc_name = '$name'";
+                $query = "SELECT document_id, doc_name, quantity, author, image_url FROM documents WHERE doc_name = '$name'";
             } else {
-                $query = "SELECT document_id, doc_name, quantity, author FROM documents";
+                $query = "SELECT document_id, doc_name, quantity, author, image_url FROM documents";
             }
             $result = mysqli_query($link, $query);
             
@@ -98,6 +98,7 @@ session_start()
               $name = $row['doc_name'];
               $au = $row['author'];
               $quan = $row['quantity'];
+              $image = $row['image_url'];
               $action = "borrow_return.php";
               $button = "<button class='btn btn-success' type='submit'>Mượn</button>";
               if ($per == 1) {
@@ -108,6 +109,7 @@ session_start()
                 $button = "<button class='btn btn-success disabled'>Đã hết</button>";
               }
               echo "<div class='card' style='width: 17.85rem;'>
+                <img src=$image class='card-img-top' alt='Image'>
                 <div class='card-body'>
                     <h5>$doc_id</h5>
                   <h5 class='card-title'>$name</h5>
@@ -115,6 +117,7 @@ session_start()
                   <form action=$action method='POST'>
                   <input type='hidden' value=$doc_id name='doc'>
                   <input type='hidden' value='1' name='act'>
+                  <input type='hidden' value=$image name='img'>
                   $button
                   </form>
                 </div>
@@ -122,7 +125,7 @@ session_start()
           }
         }
     } else {
-      $query = "SELECT document_id, doc_name, quantity, author FROM documents";
+      $query = "SELECT document_id, doc_name, quantity, author, image_url FROM documents";
       $result = mysqli_query($link, $query);
 
       if (!$result) {
@@ -136,6 +139,7 @@ session_start()
           $name = $row['doc_name'];
           $au = $row['author'];
           $quan = $row['quantity'];
+          $image = $row['image_url'];
           $action = "borrow_return.php";
           $button = "<button class='btn btn-success' type='submit'>Mượn</button>";
           if ($per == 1) {
@@ -146,6 +150,7 @@ session_start()
             $button = "<button class='btn btn-success disabled'>Đã hết</button>";
           }
           echo "<div class='card' style='width: 17.85rem;'>
+          <img src=$image class='card-img-top' alt='Image'>
             <div class='card-body'>
                 <h5>$doc_id</h5>
               <h5 class='card-title'>$name</h5>
@@ -153,6 +158,7 @@ session_start()
               <form action=$action method='POST'>
               <input type='hidden' value=$doc_id name='doc'>
               <input type='hidden' value='1' name='act'>
+              <input type='hidden' value=$image name='img'>
               $button
               </form>
             </div>

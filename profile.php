@@ -94,10 +94,10 @@ if(session_status() == PHP_SESSION_NONE) session_start();
                 <h5>$doc_id</h5>
               <h5 class='card-title'>$name</h5>
               <h6 class='card-subtitle mb-2 text-body-secondary'>$au</h6>
-              <form action='action_on_book.php' method='POST'>
+              <form action='borrow_return.php' method='POST'>
               <input type='hidden' value='2' name='act'>
               <input type='hidden' value=$doc_id name='doc'>
-              <button class='btn btn-warning' type='submit'>Bỏ mượn</button>
+              <button class='btn btn-warning' type='submit'>Trả</button>
               </form>
             </div>
         </div>";

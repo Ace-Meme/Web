@@ -39,7 +39,8 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($x == $acc && $y == $pass) {
                     $_SESSION['id'] = $row['student_id'];
                     $_SESSION['permission'] = $row['permission'];
-                    include('home.php');
+                    header("Location: home.php");
+                    exit;
                     $count++;
                     break;
                 }
