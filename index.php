@@ -62,8 +62,8 @@ session_unset();
                 </ul>
             </nav>
             <div class="content-section">
-                <h2>Kiến thức của bạn, Ưu tiên của chúng tôi </h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Sed euismod ligula vel nisi tincidunt sollicitudin.</p>
+                <h2>Kiến thức của bạn - Ưu tiên của chúng tôi </h2>
+                <p>Trang web cung cấp các tài liệu chất lượng<br>Cập nhật liên tục các tác phẩm, tài liệu mới</p>
                 <form action='signin.php'>
                     <button class='btn btn-primary' type='submit'>Mượn sách ngay</button>
                 </form>
