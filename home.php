@@ -7,7 +7,9 @@ if (session_status() == PHP_SESSION_NONE) session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>MyLib</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
@@ -43,11 +45,13 @@ if (session_status() == PHP_SESSION_NONE) session_start();
                 <li class='nav-item'>
                   <a class='nav-link' aria-disabled='true' href='profile.php'>Cá nhân</a>
                 </li>
+
                 <?php if(isset($_SESSION['permission']) && $_SESSION['permission'] == 1): ?>
                   <li class='nav-item'>
                       <a class='nav-link' aria-disabled='true' href='member.php'>Thành viên</a>
                   </li>
                 <?php endif; ?>
+
             </ul>
         </div>
     </div>

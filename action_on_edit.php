@@ -8,12 +8,15 @@
     $quan = (int) $_POST["quantity"];
     $year = (int) $_POST['year'];
     $act = (int) $_POST['act'];
+
     $link = mysqli_connect('localhost', 'root');
     if (!$link) {
         die('Not connected : ' . mysqli_error($link));
     }
     // make foo the current db
+
     $db_selected = mysqli_select_db($link,'library');
+
     if (!$db_selected) {
         die ('Can\'t use foo : ' . mysqli_error($link));
     }
