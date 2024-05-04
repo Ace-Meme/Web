@@ -4,7 +4,7 @@
     $id = $_SESSION['id'];
     $act = (int)$_POST['act'];
     $doc_id = $_POST['doc'];
-    $mysqli = new mysqli('localhost', 'root', '', 'test');
+    $mysqli = new mysqli('localhost', 'root', '', 'library');
     if ($mysqli->connect_errno) {
         printf("Connect failed: %s", $mysqli->connect_error);
         exit();
