@@ -7,7 +7,9 @@ if(session_status() == PHP_SESSION_NONE) session_start();
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Document</title>
+
+    <title>MyLib</title>
+
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous'>
 </head>
 <body>
@@ -16,15 +18,24 @@ if(session_status() == PHP_SESSION_NONE) session_start();
           <div class='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
                 <li class='nav-item'>
-                  <a class='nav-link active' aria-current='page' href='home.php'>Trang chủ</a>
+
+                  <a class='nav-link' aria-current='page' href='home.php'>Trang chủ</a>
+
                 </li>
                 <li class='nav-item'>
                   <a class='nav-link' href='book.php'>Sách</a>
                 </li>
                 
                 <li class='nav-item'>
-                  <a class='nav-link' aria-disabled='true'>Cá nhân</a>
+
+                  <a class='nav-link active' aria-disabled='true' href='#'>Cá nhân</a>
                 </li>
+                <?php if(isset($_SESSION['permission']) && $_SESSION['permission'] == 1): ?>
+                  <li class='nav-item'>
+                      <a class='nav-link' aria-disabled='true' href='member.php'>Thành viên</a>
+                  </li>
+                <?php endif; ?>
+
               </ul>
             
           </div>
@@ -39,7 +50,9 @@ if(session_status() == PHP_SESSION_NONE) session_start();
             die('Not connected : ' . mysqli_error($link));
         }
         // make foo the current db
-        $db_selected = mysqli_select_db($link,'test');
+
+        $db_selected = mysqli_select_db($link,'library');
+
         if (!$db_selected) {
             die ('Can\'t use foo : ' . mysqli_error($link));
         }
@@ -89,10 +102,12 @@ if(session_status() == PHP_SESSION_NONE) session_start();
                 <h5>$doc_id</h5>
               <h5 class='card-title'>$name</h5>
               <h6 class='card-subtitle mb-2 text-body-secondary'>$au</h6>
-              <form action='action_on_book.php' method='POST'>
+
+              <form action='borrow_return.php' method='POST'>
               <input type='hidden' value='2' name='act'>
               <input type='hidden' value=$doc_id name='doc'>
-              <button class='btn btn-warning' type='submit'>Bỏ mượn</button>
+              <button class='btn btn-warning' type='submit'>Trả</button>
+
               </form>
             </div>
         </div>";

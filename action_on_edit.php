@@ -8,15 +8,15 @@
     $quan = (int) $_POST["quantity"];
     $year = (int) $_POST['year'];
     $act = (int) $_POST['act'];
-    // if (strlen($name) == 0 or strlen($des) == 0 or $price <= 0) {
-    //     die('Your input format is not correct. Try again');
-    // }////// check
+
     $link = mysqli_connect('localhost', 'root');
     if (!$link) {
         die('Not connected : ' . mysqli_error($link));
     }
     // make foo the current db
-    $db_selected = mysqli_select_db($link,'test');
+
+    $db_selected = mysqli_select_db($link,'library');
+
     if (!$db_selected) {
         die ('Can\'t use foo : ' . mysqli_error($link));
     }
