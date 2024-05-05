@@ -118,7 +118,7 @@ session_start()
                 $button = "<button class='btn btn-success disabled'>Đã hết</button>";
               }
               echo "<div class='card' style='width: 17.85rem;'>
-                <img src=$image class='card-img-top' alt='Image'>
+                <img src=$image class='card-img-top' alt='Image not found'>
                 <div class='card-body'>
                     <h5>$doc_id</h5>
                   <h5 class='card-title'>$name</h5>
