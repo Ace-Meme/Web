@@ -45,6 +45,10 @@ if(session_status() == PHP_SESSION_NONE) session_start();
           font-weight: 700;
           font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
+        .borrow-item{
+          background-color: #85FFBD;
+          background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+        }
     </style>
 </head>
 <body>
@@ -145,8 +149,8 @@ if(session_status() == PHP_SESSION_NONE) session_start();
           $au = $row['author'];
           $quan = $row['quantity'];
             echo "<div class='card' style='width: 18rem;'>
-              <div class='card-body'>
-                  <h5>$doc_id</h5>
+              <div class='card-body borrow-item'>
+                  <h5>Mã số sách: $doc_id</h5>
                 <h5 class='card-title'>$name</h5>
                 <h6 class='card-subtitle mb-2 text-body-secondary'>$au</h6>
 
