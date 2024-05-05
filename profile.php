@@ -21,8 +21,8 @@ if(session_status() == PHP_SESSION_NONE) session_start();
       .profile-content{
         width:70%;
         margin: auto auto;
-        background-color: #85FFBD;
-        background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+        background-color: #FBAB7E;
+        background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
         padding: 20px;
         border-radius: 20px;
       }
