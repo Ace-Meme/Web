@@ -88,14 +88,14 @@ session_start()
       }
       if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
         if ($_POST["submit"] == "Tìm kiếm") {
-            $name = isset($_POST['doc']) ? $_POST['doc']:null;
-            if ($name){
-                $query = "SELECT document_id, doc_name, quantity, author, image_url FROM documents WHERE doc_name = '$name'";
-            } else {
-                $query = "SELECT document_id, doc_name, quantity, author, image_url FROM documents";
-            }
+            $search = isset($_POST['doc']) ? $_POST['doc']:null;
+            // if ($name){
+            //     $query = "SELECT documents.document_id, doc_name, quantity, author FROM documents LEFT JOIN (SELECT * FROM borrow WHERE student_id = $id) AS a ON documents.document_id = a.document_id WHERE student_id IS NULL AND doc_name='$name'";
+            // } else {
+            //     $query = "SELECT documents.document_id, doc_name, quantity, author FROM documents LEFT JOIN (SELECT * FROM borrow WHERE student_id = $id) AS a ON documents.document_id = a.document_id WHERE student_id IS NULL";
+            // }
+            $query = "SELECT documents.document_id, doc_name, quantity, author, image_url FROM documents LEFT JOIN (SELECT * FROM borrow WHERE student_id = $id) AS a ON documents.document_id = a.document_id WHERE student_id IS NULL";
             $result = mysqli_query($link, $query);
-            
             if (!$result) {
                 $message = 'Invalid query: ' . mysqli_error() . '<br>';
                 $message .= 'Whole query: ' . $query;
@@ -105,6 +105,11 @@ session_start()
             while ($row = mysqli_fetch_assoc($result)) {
               $doc_id = $row['document_id'];
               $name = $row['doc_name'];
+              if ($search) {
+                if(strlen(stripos($name, $search)) == 0){
+                  continue;
+                }
+              }
               $au = $row['author'];
               $quan = $row['quantity'];
               $image = $row['image_url'];
@@ -134,7 +139,7 @@ session_start()
           }
         }
     } else {
-      $query = "SELECT document_id, doc_name, quantity, author, image_url FROM documents";
+      $query = "SELECT documents.document_id, doc_name, quantity, author, image_url FROM documents LEFT JOIN (SELECT * FROM borrow WHERE student_id = $id) AS a ON documents.document_id = a.document_id WHERE student_id IS NULL";
 
       $result = mysqli_query($link, $query);
 

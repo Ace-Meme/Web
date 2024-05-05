@@ -38,9 +38,13 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST" &&
                 if(strlen($set) != 0) $set = $set.",";
                 $set = $set."publisher='$pub'";
             }
-            if(strlen($year) != 0) {
+            if($year > 0) {
                 if(strlen($set) != 0) $set = $set.",";
                 $set = $set."publish_year=$year";
+            }
+            if($quan >= 0) {
+                if(strlen($set) != 0) $set = $set.",";
+                $set = $set."quantity=quantity + $quan";
             }
             if(strlen($des) != 0) {
                 if(strlen($set) != 0) $set = $set.",";
@@ -49,6 +53,10 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST" &&
             $query = "UPDATE documents SET $set WHERE document_id = $doc";
         }
         else if ($act == 2){
+            if(strlen($name) == 0 || strlen($au) == 0 || $year <= 0 || $quan < 0){
+                echo '<script>alert("Thông tin nhập không đúng dạng")</script>';
+                exit();
+            }
             $query = "INSERT INTO documents (doc_name, type, author, publisher, publish_year, quantity, description) VALUES ('$name', '$type', '$au', '$pub', $year, $quan, '$des')";
         }
         $result = mysqli_query($link, $query);
@@ -63,7 +71,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST" &&
         // </form>";
         mysqli_close($link);
         header("Location: create_edit_success.php?act=$act&doc=$doc");
-        exit;
+        exit();
     }
 }
 
