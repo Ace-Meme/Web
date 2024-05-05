@@ -22,6 +22,28 @@ session_start()
     footer {
         margin-top: auto;
     }
+    .table{
+      width: 80%;
+      margin: auto auto;
+    }
+    .table th, .table td {
+            text-align: center;
+        }
+        .table th {
+          background-color: #FBAB7E;
+          /* background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%); */
+            border: 2px solid black;
+        }
+        .table td{
+          background-color: white;
+          border: 2px solid black;
+          background-color: #85FFBD;
+          /* background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%); */
+        }
+        h1{
+          margin: auto auto;
+          font-weight: 700;
+        }
   </style>
 </head>
 <body>
@@ -51,7 +73,7 @@ session_start()
       </nav>
 
       <div class='container-fluid mt-3 d-flex flex-row flex-wrap gap-3'>
-
+      <h1 class='text-center mb-4'>Danh sách thành viên</h1>
         <?php
         $id = $_SESSION['id'];
         $link = mysqli_connect('localhost', 'root');
@@ -71,7 +93,8 @@ session_start()
             $message .= 'Whole query: ' . $query;
             die($message);
         }
-        echo "<table class='table'>
+        echo "
+              <table class='table table-striped table-hover table-bordered'>
                 <thead>
                   <tr>
                     <th scope='col'>Mã số</th>
@@ -85,33 +108,36 @@ session_start()
         $count = 0;
         $docs = array();
         while ($row = mysqli_fetch_assoc($result)) {
-          $count++;
-          if ($count > 1) {
-            if ($row['student_id'] != $student_id){
-              $doc_string = implode("<br/>", $docs);
-              echo "<tr>
-                      <td>$student_id</td>
-                      <td>$name</td>
-                      <td>$join_date</td>
-                      <td>$doc_string</td>
-                    </tr>";
-              $student_id = $row['student_id'];
-              $name = $row['student_name'];
-              $join_date = $row['join_date'];
-              $doc_name = $row['doc_name'];
-              $docs = array($doc_name);
+            $count++;
+            if ($count > 1) {
+                if ($row['student_id'] != $student_id){
+                    $doc_string = implode("<br/>", $docs);
+                    echo "<tr>
+                            <td>$student_id</td>
+                            <td>$name</td>
+                            <td>$join_date</td>
+                            <td>$doc_string</td>
+                          </tr>";
+                    // Reset giá trị mới
+                    $student_id = $row['student_id'];
+                    $name = $row['student_name'];
+                    $join_date = $row['join_date'];
+                    $doc_name = $row['doc_name'];
+                    $docs = array($doc_name);
+                } else {
+                    $doc_name = $row['doc_name'];
+                    $docs[] = $doc_name;
+                }
             } else {
-              $doc_name = $row['doc_name'];
-              $docs[] = $doc_name;
+                $student_id = $row['student_id'];
+                $name = $row['student_name'];
+                $join_date = $row['join_date'];
+                $doc_name = $row['doc_name'];
+                $docs[] = $doc_name;
             }
-          } else {
-            $student_id = $row['student_id'];
-            $name = $row['student_name'];
-            $join_date = $row['join_date'];
-            $doc_name = $row['doc_name'];
-            $docs[] = $doc_name;
-          }
         }
+
+        // Dòng cuối cùng
         $doc_string = implode("<br/>", $docs);
         echo "<tr>
                 <td>$student_id</td>
@@ -119,6 +145,7 @@ session_start()
                 <td>$join_date</td>
                 <td>$doc_string</td>
               </tr>";
+
         echo "</tbody>
               </table>";
         

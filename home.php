@@ -120,8 +120,8 @@ if (session_status() == PHP_SESSION_NONE) session_start();
         </div>
     </nav>
     <?php
-    echo $_SESSION['id'];
-    echo $_SESSION['permission'];
+    // echo $_SESSION['id'];
+    // echo $_SESSION['permission'];
     $special_products = [
     [
         'name' => 'Những người khốn khổ',

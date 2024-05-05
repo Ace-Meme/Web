@@ -43,7 +43,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
             }
             if ($test == 0){
                 $currentDate = date("Y-m-d");
-                $query = "INSERT INTO members (student_name, email, password, join_date, permission) VALUES ('$name', '$acc', '$pass', '$currentDate', '1')";
+                $query = "INSERT INTO members (student_name, email, password, join_date, permission) VALUES ('$name', '$acc', '$pass', '$currentDate', '2')";
                 $result = mysqli_query($link, $query);
                 if ($result) {
                     header("Location: signup_success.php");
