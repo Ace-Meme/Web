@@ -7,7 +7,9 @@ $pass = $_POST['password'];
           die('Not connected : ' . mysqli_error($link));
       }
       // make foo the current db
+
       $db_selected = mysqli_select_db($link,'library');
+
       if (!$db_selected) {
           die ('Can\'t use foo : ' . mysqli_error($link));
       }
@@ -34,7 +36,9 @@ $pass = $_POST['password'];
       }
       
       if($count == 0){
+
         echo "Người dùng không tồn tại";
+
       }
       mysqli_close($link);
 ?>

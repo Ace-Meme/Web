@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `library`
 --
+CREATE DATABASE library;
+USE library;
 
 DELIMITER $$
 --

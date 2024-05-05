@@ -4,7 +4,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Library</title>
+    <title>MyLib</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
@@ -64,9 +64,9 @@
         if ($_POST["submit"] == "Tìm kiếm") {
             $name = isset($_POST['doc']) ? $_POST['doc']:null;
             if ($name){
-                $query = "SELECT document_id, doc_name, quantity, author FROM documents WHERE doc_name = '$name'";
+                $query = "SELECT document_id, doc_name, quantity, author, image_url FROM documents WHERE doc_name = '$name'";
             } else {
-                $query = "SELECT document_id, doc_name, quantity, author FROM documents";
+                $query = "SELECT document_id, doc_name, quantity, author, image_url FROM documents";
             }
             $result = mysqli_query($link, $query);
             
@@ -81,7 +81,9 @@
                 $name = $row['doc_name'];
                 $au = $row['author'];
                 $quan = $row['quantity'];
-                echo "<div class='card' style='width: 18rem;'>
+                $image = $row['image_url'];
+                echo "<div class='card' style='width: 17.85rem;'>
+                <img src=$image class='card-img-top' alt='Image'>
                 <div class='card-body'>
                     <h5>$doc_id</h5>
                     <h5 class='card-title'>$name</h5>
@@ -92,7 +94,7 @@
         }
     }
     else {
-      $query = "SELECT document_id, doc_name, quantity, author FROM documents";
+      $query = "SELECT document_id, doc_name, quantity, author, image_url FROM documents";
       $result = mysqli_query($link, $query);
 
       if (!$result) {
@@ -106,7 +108,9 @@
           $name = $row['doc_name'];
           $au = $row['author'];
           $quan = $row['quantity'];
-          echo "<div class='card' style='width: 18rem;'>
+          $image = $row['image_url'];
+          echo "<div class='card' style='width: 17.85rem;'>
+          <img src=$image class='card-img-top' alt='Image'>
             <div class='card-body'>
                 <h5>$doc_id</h5>
               <h5 class='card-title'>$name</h5>
