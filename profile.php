@@ -49,6 +49,9 @@ if(session_status() == PHP_SESSION_NONE) session_start();
           background-color: #85FFBD;
           background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
         }
+        .navigation:hover{
+            background-color: #ccc;
+        }
     </style>
 </head>
 <body>
@@ -58,20 +61,20 @@ if(session_status() == PHP_SESSION_NONE) session_start();
             <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
                 <li class='nav-item'>
 
-                  <a class='nav-link' aria-current='page' href='home.php'>Trang chủ</a>
+                  <a class='nav-link navigation' aria-current='page' href='home.php'>Trang chủ</a>
 
                 </li>
                 <li class='nav-item'>
-                  <a class='nav-link' href='book.php'>Sách</a>
+                  <a class='nav-link navigation' href='book.php'>Sách</a>
                 </li>
                 
                 <li class='nav-item'>
 
-                  <a class='nav-link active' aria-disabled='true' href='#'>Cá nhân</a>
+                  <a class='nav-link active navigation' aria-disabled='true' href='#'>Cá nhân</a>
                 </li>
                 <?php if(isset($_SESSION['permission']) && $_SESSION['permission'] == 1): ?>
                   <li class='nav-item'>
-                      <a class='nav-link' aria-disabled='true' href='member.php'>Thành viên</a>
+                      <a class='nav-link navigation' aria-disabled='true' href='member.php'>Thành viên</a>
                   </li>
                 <?php endif; ?>
 

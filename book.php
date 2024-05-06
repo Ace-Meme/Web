@@ -23,6 +23,9 @@ session_start()
     footer {
         margin-top: auto;
     }
+    .navigation:hover{
+            background-color: #ccc;
+        }
   </style>
 
 </head>
@@ -32,21 +35,21 @@ session_start()
           <div class='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
                 <li class='nav-item'>
-                  <a class='nav-link' aria-disabled='true' href='home.php'>Trang chủ</a>
+                  <a class='nav-link navigation' aria-disabled='true' href='home.php'>Trang chủ</a>
                 </li>
                 <li class='nav-item'>
 
-                  <a class='nav-link active' aria-current='page' href='#'>Sách</a>
+                  <a class='nav-link active navigation' aria-current='page' href='#'>Sách</a>
 
                 </li>
                 
                 <li class='nav-item'>
-                  <a class='nav-link' aria-disabled='true' href='profile.php'>Cá nhân</a>
+                  <a class='nav-link navigation' aria-disabled='true' href='profile.php'>Cá nhân</a>
                 </li>
 
                 <?php if(isset($_SESSION['permission']) && $_SESSION['permission'] == 1): ?>
                   <li class='nav-item'>
-                      <a class='nav-link' aria-disabled='true' href='member.php'>Thành viên</a>
+                      <a class='nav-link navigation' aria-disabled='true' href='member.php'>Thành viên</a>
                   </li>
                 <?php endif; ?>
 
@@ -161,7 +164,8 @@ session_start()
           $button = "<button class='btn btn-success' type='submit'>Mượn</button>";
           if ($per == 1) {
             $action = "create_edit.php";
-            $button = "<button class='btn btn-success' type='submit'>Chỉnh sửa thông tin</button>";
+            $button = "<h6 class='card-subtitle mb-2 text-body-secondary'>Số lượng: $quan</h6>
+            <button class='btn btn-success' type='submit'>Chỉnh sửa thông tin</button>";
           }
           if ((int) $quan == 0 && $per == 2) {
             $button = "<button class='btn btn-success disabled'>Đã hết</button>";

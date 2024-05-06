@@ -92,6 +92,12 @@ if (session_status() == PHP_SESSION_NONE) session_start();
             font-weight: 700;
             font-family: 'Courier New', Courier, monospace;
         }
+        .navigation:hover{
+            background-color: #ccc;
+        }
+        .title-page{
+            margin-bottom: 1em;
+        }
     </style>
   </head>
 <body>
@@ -100,18 +106,18 @@ if (session_status() == PHP_SESSION_NONE) session_start();
             <div class='collapse navbar-collapse' id='navbarSupportedContent'>
                 <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
                     <li class='nav-item'>
-                    <a class='nav-link active' aria-current='page' href='#'>Trang chủ</a>
+                    <a class='nav-link active navigation' aria-current='page' href='#'>Trang chủ</a>
                     </li>
                     <li class='nav-item'>
-                    <a class='nav-link' href='book.php'>Sách</a>
+                    <a class='nav-link navigation' href='book.php'>Sách</a>
                     </li>
                     <li class='nav-item'>
-                    <a class='nav-link' aria-disabled='true' href='profile.php'>Cá nhân</a>
+                    <a class='nav-link navigation' aria-disabled='true' href='profile.php'>Cá nhân</a>
                     </li>
 
                     <?php if(isset($_SESSION['permission']) && $_SESSION['permission'] == 1): ?>
                     <li class='nav-item'>
-                        <a class='nav-link' aria-disabled='true' href='member.php'>Thành viên</a>
+                        <a class='nav-link navigation' aria-disabled='true' href='member.php'>Thành viên</a>
                     </li>
                     <?php endif; ?>
 
@@ -166,7 +172,7 @@ if (session_status() == PHP_SESSION_NONE) session_start();
         </div>
     </div>
     <div class='container my-4'>
-        <h2 class='text-left'>Tài liệu sắp có mặt trên My Library</h2>
+        <h2 class='text-left title-page'>Tài liệu sắp có mặt trên My Library</h2>
         <div class='row'>
             <?php foreach ($special_products as $product): ?>
                 <div class='col-md-6 col-lg-4'>

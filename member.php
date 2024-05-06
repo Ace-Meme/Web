@@ -44,6 +44,9 @@ session_start()
           margin: auto auto;
           font-weight: 700;
         }
+        .navigation:hover{
+            background-color: #ccc;
+        }
   </style>
 </head>
 <body>
@@ -52,18 +55,18 @@ session_start()
           <div class='collapse navbar-collapse' id='navbarSupportedContent'>
             <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
                 <li class='nav-item'>
-                  <a class='nav-link' aria-disabled='true' href='home.php'>Trang chủ</a>
+                  <a class='nav-link navigation' aria-disabled='true' href='home.php'>Trang chủ</a>
                 </li>
                 <li class='nav-item'>
-                  <a class='nav-link' aria-current='page' href='book.php'>Sách</a>
+                  <a class='nav-link navigation' aria-current='page' href='book.php'>Sách</a>
                 </li>
                 
                 <li class='nav-item'>
-                  <a class='nav-link' aria-disabled='true' href='profile.php'>Cá nhân</a>
+                  <a class='nav-link navigation' aria-disabled='true' href='profile.php'>Cá nhân</a>
                 </li>
                 <?php if(isset($_SESSION['permission']) && $_SESSION['permission'] == 1): ?>
                   <li class='nav-item'>
-                      <a class='nav-link active' aria-disabled='true' href='#'>Thành viên</a>
+                      <a class='nav-link active navigation' aria-disabled='true' href='#'>Thành viên</a>
                   </li>
                 <?php endif; ?>
               </ul>

@@ -19,22 +19,25 @@
     footer {
         margin-top: auto;
     }
+    .navigation:hover{
+            background-color: #ccc;
+        }
   </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <ul class="navbar-nav">
             <li class="nav-item">
-            <a class="nav-link" href="index.php">MyLib</a>
+            <a class="nav-link navigation" href="index.php">MyLib</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="signin.php">Đăng nhập</a>
+            <a class="nav-link navigation" href="signin.php">Đăng nhập</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="signup.php">Đăng kí</a>
+            <a class="nav-link navigation" href="signup.php">Đăng kí</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link active" href="browse_book.php">Xem sách</a>
+            <a class="nav-link active navigation" href="browse_book.php">Xem sách</a>
             </li>
         </ul>
     </nav>
@@ -42,10 +45,13 @@
     <h2 class="text-center">My Library</h2>
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <form class="d-flex" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
+      <!--
+        <form class="d-flex" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
         <input class="form-control me-2" type="search" placeholder="Nhập tên sách" aria-label="Search" name="doc">
         <button class="btn btn-primary" type="submit" name="submit" value="Tìm kiếm">Nhập</button>
       </form>
+      -->
+      
     </div>
   </div>
 </div>
@@ -110,7 +116,7 @@
           $quan = $row['quantity'];
           $image = $row['image_url'];
           echo "<div class='card' style='width: 17.85rem;'>
-          <img src=$image class='card-img-top' alt='Image'>
+          <img src=$image class='card-img-top' alt='Image not found'>
             <div class='card-body'>
                 <h5>$doc_id</h5>
               <h5 class='card-title'>$name</h5>

@@ -34,6 +34,9 @@ session_unset();
         display: flex;
         flex-direction: row-reverse;
     }
+    .navigation:hover{
+            background-color: #ccc;
+        }
   </style>
 </head>
 <body>
@@ -48,16 +51,16 @@ session_unset();
             <nav class="navbar navbar-expand-sm navbar-light bg-light">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                    <a class="nav-link active" href="index.php">MyLib</a>
+                    <a class="nav-link active navigation" href="index.php">MyLib</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="signin.php">Đăng nhập</a>
+                    <a class="nav-link navigation" href="signin.php">Đăng nhập</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="signup.php">Đăng kí</a>
+                    <a class="nav-link navigation" href="signup.php">Đăng kí</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="browse_book.php">Xem sách</a>
+                    <a class="nav-link navigation" href="browse_book.php">Xem sách</a>
                     </li>
                 </ul>
             </nav>
