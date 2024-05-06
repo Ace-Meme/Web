@@ -168,7 +168,7 @@ session_start()
           }
 
           echo "<div class='card' style='width: 17.85rem;'>
-          <img src=$image class='card-img-top' alt='Image'>
+          <img src=$image class='card-img-top' alt='Image not found'>
 
             <div class='card-body'>
                 <h5>$doc_id</h5>

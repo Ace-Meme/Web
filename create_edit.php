@@ -18,6 +18,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST" &&
         $type = $_POST['type'];
         $pub = $_POST['publisher'];
         $des = $_POST["des"];
+        $imag = $_POST["imag"];
         $quan = (int) $_POST["quantity"];
         $year = (int) $_POST['year'];
         $act = (int) $_POST['act'];
@@ -33,6 +34,10 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST" &&
             if(strlen($type) != 0) {
                 if(strlen($set) != 0) $set = $set.",";
                 $set = $set."type='$type'";
+            }
+            if(strlen($imag) != 0) {
+                if(strlen($set) != 0) $set = $set.",";
+                $set = $set."image_url='$imag'";
             }
             if(strlen($pub) != 0) {
                 if(strlen($set) != 0) $set = $set.",";
@@ -54,10 +59,11 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST" &&
         }
         else if ($act == 2){
             if(strlen($name) == 0 || strlen($au) == 0 || $year <= 0 || $quan < 0){
-                echo '<script>alert("Thông tin nhập không đúng dạng")</script>';
+                echo '<div>Thông tin không đúng dạng</div>
+                <button class="btn btn-primary"><a href="book.php">Về trang</a></button>';
                 exit();
             }
-            $query = "INSERT INTO documents (doc_name, type, author, publisher, publish_year, quantity, description) VALUES ('$name', '$type', '$au', '$pub', $year, $quan, '$des')";
+            $query = "INSERT INTO documents (doc_name, type, author, publisher, publish_year, quantity, image_url, description) VALUES ('$name', '$type', '$au', '$pub', $year, $quan, '$imag', '$des')";
         }
         $result = mysqli_query($link, $query);
         if (!$result) {
@@ -130,6 +136,7 @@ if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST" &&
                     <input type="text" class='form-control' name="author" placeholder="Tác giả">
                     <input type="text" class='form-control' name="type" placeholder="Thể loại">
                     <input type="text" class='form-control' name="publisher" placeholder="Nhà xuất bản">
+                    <input type="text" class='form-control' name="imag" placeholder="Link ảnh">
                     <input type="number" class='form-control' name="year" placeholder="Năm xuất bản">
                     <input type="number" class='form-control' name="quantity" placeholder="Số lượng">
                     <textarea type="text" class='form-control' name="des" placeholder="Mô tả" maxlength=1000></textarea>
